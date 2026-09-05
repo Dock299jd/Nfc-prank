@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Alert</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050505;
+    color: #ff3030;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .box {
+    width: min(92%, 520px);
+    border: 2px solid #ff3030;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 0 25px #ff303055;
+    animation: pulse 1s infinite alternate;
+  }
+  .icon { font-size: 58px; }
+  h1 {
+    font-size: clamp(24px, 7vw, 42px);
+    margin: 15px 0;
+    animation: blink .7s infinite;
+  }
+  p { color: #fff; font-size: 17px; line-height: 1.6; }
+  .bar {
+    height: 15px;
+    border: 1px solid #ff3030;
+    margin: 22px 0 8px;
+    padding: 2px;
+  }
+  .progress {
+    height: 100%;
+    width: 0;
+    background: #ff3030;
+    animation: load 4s forwards;
+  }
+  button {
+    margin-top: 20px;
+    padding: 12px 22px;
+    background: #ff3030;
+    color: #000;
+    border: 0;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: monospace;
+  }
+  #reveal { display: none; color: #7CFF7C; font-size: 22px; }
+  @keyframes blink { 50% { opacity: .35; } }
+  @keyframes pulse { from { box-shadow: 0 0 10px #ff303055; } to { box-shadow: 0 0 35px #ff303099; } }
+  @keyframes load { to { width: 100%; } }
+</style>
+</head>
+<body>
+  <main class="box">
+    <div class="icon">🚨</div>
+    <h1>HP KAMU TELAH DIRETAS</h1>
+    <p id="status">Memindai sistem...<br>Jangan panik.</p>
+    <div class="bar"><div class="progress"></div></div>
+    <p id="timer">Mengambil data penting...</p>
+    <button onclick="reveal()">LANJUTKAN</button>
+    <div id="reveal">😂 TENANG, CUMA PRANK! 😂<br><br>Selamat, kamu baru saja kena jebakan NFC.</div>
+  </main>
+<script>
+  setTimeout(() => {
+    document.getElementById('status').innerHTML =
+      'Akses sistem berhasil...<br>Menyiapkan kejutan.';
+    document.getElementById('timer').textContent =
+      '99% selesai...';
+  }, 2500);
+
+  function reveal() {
+    document.getElementById('reveal').style.display = 'block';
+    document.getElementById('status').style.display = 'none';
+    document.getElementById('timer').style.display = 'none';
+    document.querySelector('button').style.display = 'none';
+  }
+</script>
+</body>
+</html>
